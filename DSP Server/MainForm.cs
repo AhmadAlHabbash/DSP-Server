@@ -9,22 +9,22 @@ using Newtonsoft.Json.Linq;
 
 namespace DSP_Server
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         public TcpListener server;
-        public bool work;
+        public bool listening;
         public int port;
         public Thread listenerThread;
         public static int clientNum;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            work = true;
+            listening = true;
             port = 1025;
         }
 
@@ -33,7 +33,7 @@ namespace DSP_Server
             // Initialize Server
             server = new TcpListener(new IPEndPoint(IPAddress.Any, port));
             server.Start();
-            textBox2.Text = textBox2.Text + "Server Start !!" + Environment.NewLine;
+            status.Text = status.Text + "Server Start !!" + Environment.NewLine;
             // Initialize Listener
             listenerThread = new Thread(new ThreadStart(Listening));
             listenerThread.IsBackground = true;
@@ -43,10 +43,10 @@ namespace DSP_Server
         private void StopServer_Click(object sender, EventArgs e)
         {
             // Stop Server
-            work = false;
+            listening = false;
             server.Stop();
             server = null;
-            textBox2.Text = textBox2.Text + "Server Stop !!" + Environment.NewLine;
+            status.Text = status.Text + "Server Stop !!" + Environment.NewLine;
             // Listener is OFF
             listenerThread.Abort();
             listenerThread = null;
@@ -54,7 +54,7 @@ namespace DSP_Server
 
         private void Listening()
         {
-            while (work)
+            while (listening)
             {
                 try
                 {
@@ -72,7 +72,7 @@ namespace DSP_Server
 
         public static void HandleClient(TcpClient client)
         {
-            textBox2.Invoke(new Action(() => textBox2.Text = textBox2.Text + "new Client" + Environment.NewLine));
+            status.Invoke(new Action(() => status.Text = status.Text + "new Client" + Environment.NewLine));
             StreamReader sr = new StreamReader(client.GetStream());
             char[] data = new char[20];
 
@@ -89,7 +89,7 @@ namespace DSP_Server
                 }
                 else
                 {
-                    textBox2.Invoke(new Action(() => textBox2.Text = textBox2.Text + "Client Disconnected !!" + Environment.NewLine));
+                    status.Invoke(new Action(() => status.Text = status.Text + "Client Disconnected !!" + Environment.NewLine));
                     break;
                 }
                 sr.DiscardBufferedData();

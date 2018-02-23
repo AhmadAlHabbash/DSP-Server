@@ -1,6 +1,6 @@
 ﻿namespace DSP_Server
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.StopServer = new System.Windows.Forms.Button();
-            textBox2 = new System.Windows.Forms.TextBox();
+            status = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.startServer = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -46,14 +46,14 @@
             this.StopServer.UseVisualStyleBackColor = true;
             this.StopServer.Click += new System.EventHandler(this.StopServer_Click);
             // 
-            // textBox2
+            // status
             // 
-            textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            textBox2.Location = new System.Drawing.Point(12, 137);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new System.Drawing.Size(281, 308);
-            textBox2.TabIndex = 9;
+            status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            status.Location = new System.Drawing.Point(12, 137);
+            status.Multiline = true;
+            status.Name = "status";
+            status.Size = new System.Drawing.Size(281, 308);
+            status.TabIndex = 9;
             // 
             // label2
             // 
@@ -82,7 +82,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 457);
             this.Controls.Add(this.StopServer);
-            this.Controls.Add(textBox2);
+            this.Controls.Add(status);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startServer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -99,9 +99,9 @@
         #endregion
 
         private System.Windows.Forms.Button StopServer;
-        public static System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button startServer;
+        public static System.Windows.Forms.TextBox status;
     }
 }
 
